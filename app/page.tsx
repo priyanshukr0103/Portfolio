@@ -4,6 +4,7 @@ import Link from "next/link"
 import ContactForm from "./components/contact-form"
 import ProjectCard from "./components/project-card"
 import ProjectCard3D from "./components/3d-project-card"
+import CertificationCard from "./components/certification-card"
 import TechStack from "./components/tech-stack"
 import Model3DIcon from "./components/3d-model-icon"
 import OptimizedImage from "./components/optimized-image"
@@ -112,7 +113,7 @@ export default function Page() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-16 md:py-24 px-8 bg-gradient-to-b from-background to-muted/20">
+        <section id="about" className="py-20 md:py-28 px-8 bg-gradient-to-b from-background to-muted/20">
           <motion.div
             className="max-w-5xl mx-auto"
             initial={{ opacity: 0 }}
@@ -131,19 +132,44 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-start md:items-center">
               <motion.div
-                className="flex flex-col space-y-4 text-center md:text-left"
+                className="flex flex-col space-y-5 text-center md:text-left md:pr-4 md:self-center"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <p className="text-xl md:text-2xl font-medium">
-                  Looking ahead, I aspire to pursue an MBA to broaden my perspective and equip myself with strategic and managerial skills, enabling me to contribute not just as a techie but as a well-rounded professional capable of driving impact at a larger scale.
+                <p className="text-lg md:text-xl font-medium leading-relaxed">
+                  I'm a Computer Science and Engineering student with a focus on Information Technology—not someone obsessed with machines, but someone genuinely curious about how things work. I enjoy exploring systems, solving problems, and growing with each challenge I take on.
                 </p>
-                <p className="text-xl md:text-2xl font-medium">
-                  Beyond the screen and code, music is my sanctuary. I enjoy listening to songs and often find myself singing along. In those moments when emotions align with melody, I pen down poems and shayari, letting creativity flow through words.
+
+                <motion.p
+                  className="text-lg md:text-xl font-medium leading-relaxed italic"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  But there's more to me than code.
+                </motion.p>
+
+                <p className="text-lg md:text-xl font-medium leading-relaxed">
+                  Music has always been my escape. I don't just listen—I sing. And when emotions align with the rhythm, I write—poems, shayari, and thoughts that speak louder than words ever could.
+                </p>
+
+                <motion.p
+                  className="text-lg md:text-xl font-medium leading-relaxed italic"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  Tech shapes my thinking. Art shapes my feeling. And somewhere between the two, I've found my voice.
+                </motion.p>
+
+                <p className="text-lg md:text-xl font-medium leading-relaxed">
+                  Soon, I hope to pursue an MBA—not to change direction, but to expand it. To understand the bigger picture and bring value where creativity and logic meet.
                 </p>
 
                 <div className="pt-6 flex justify-center md:justify-start">
@@ -151,7 +177,7 @@ export default function Page() {
                     href="/PriyanshuKumar_resume.pdf"
                     target="_blank"
                   >
-                    <Button variant="outline" size="lg" className="flex items-center gap-2 rounded-full px-8 py-7 text-base font-medium">
+                    <Button variant="outline" size="lg" className="flex items-center gap-2 rounded-full px-8 py-7 text-base font-medium hover:bg-primary/10 transition-colors">
                       <Model3DIcon type="torus" color="orange" size={28} />
                       <span className="ml-2">View Resume</span>
                     </Button>
@@ -160,22 +186,46 @@ export default function Page() {
               </motion.div>
 
               <motion.div
-                className="flex justify-center"
+                className="flex justify-center md:self-center"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <div className="relative w-full h-[450px] rounded-2xl overflow-hidden shadow-xl border-4 border-primary/20">
+                <div className="relative w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20 group">
+                  {/* Decorative elements */}
+                  <div className="absolute -top-6 -right-6 w-12 h-12 z-10">
+                    <Model3DIcon type="cube" color="blue" size={48} />
+                  </div>
+                  <div className="absolute -bottom-6 -left-6 w-12 h-12 z-10">
+                    <Model3DIcon type="sphere" color="purple" size={48} />
+                  </div>
+
                   <OptimizedImage
                     src="/images/me_plane.jpg"
                     alt="Priyanshu Kumar"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     fallbackSrc="/images/about-image-placeholder.svg"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+
+                  {/* Multiple gradient overlays for enhanced effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-60"></div>
+
+                  {/* Animated highlight on hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-40"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                  ></motion.div>
+
+                  {/* Caption at the bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <p className="text-white text-shadow font-medium">Tech & Creativity in Balance</p>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -302,6 +352,57 @@ export default function Page() {
               </p>
             </div>
             <TechStack />
+          </motion.div>
+        </section>
+
+        {/* Certifications Section */}
+        <section className="py-20 md:py-28 px-8 bg-gradient-to-b from-background to-muted/20">
+          <motion.div
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex flex-col items-center mb-12">
+              <div className="flex items-center gap-3 mb-2">
+                <Model3DIcon type="torus" color="blue" size={40} />
+                <h2 className="text-3xl md:text-4xl font-bold">Certifications</h2>
+              </div>
+              <div className="h-1 w-20 bg-primary mt-3 rounded-full"></div>
+              <p className="mt-3 text-muted-foreground text-center max-w-2xl">
+                Professional certifications that validate my expertise and continuous learning journey.
+              </p>
+            </div>
+
+            <div className="grid gap-10 md:grid-cols-3 auto-rows-fr">
+              <CertificationCard
+                title="Oracle Certified Professional: Java SE 11 Developer"
+                link="https://drive.google.com/file/d/1Fg1OdhgD4LRtb782JszdcGZmO7vED46_/view?usp=drive_link"
+              />
+              <CertificationCard
+                title="Oracle Cloud Infrastructure 2024 Certified Foundations Associate"
+                link="https://drive.google.com/file/d/1N4vL8tbqjcrkLbE2aVDnXPt5iCj3ZRa1/view?usp=drive_link"
+              />
+              <CertificationCard
+                title="NPTEL Online Certification in Data Mining"
+                link="https://drive.google.com/file/d/12KfnNhxa3EWp7FnoaaQ9KKyZDeuGW8PJ/view?usp=drive_link"
+              />
+            </div>
+
+            <motion.div
+              className="mt-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <Link
+                href="https://www.linkedin.com/in/priyanshukr0103/"
+                target="_blank"
+              >
+              </Link>
+            </motion.div>
           </motion.div>
         </section>
 
