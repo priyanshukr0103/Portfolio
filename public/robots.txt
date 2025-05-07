@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://priyanshukr0103.github.io/Portfolio/sitemap.xml

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Priyanshu Kumar - Portfolio</title>
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #1a1a1a;
+      --primary: #0070f3;
+      --primary-foreground: #ffffff;
+      --secondary: #f5f5f5;
+      --secondary-foreground: #1a1a1a;
+      --muted: #f0f0f0;
+      --muted-foreground: #6c757d;
+      --accent: #f0f0f0;
+      --accent-foreground: #1a1a1a;
+      --card: #ffffff;
+      --card-foreground: #1a1a1a;
+      --border: #e2e8f0;
+      --sidebar-bg: #1e293b;
+      --sidebar-fg: #f8fafc;
+    }
+
+    .dark {
+      --background: #121212;
+      --foreground: #f8fafc;
+      --primary: #3b82f6;
+      --primary-foreground: #ffffff;
+      --secondary: #1e293b;
+      --secondary-foreground: #f8fafc;
+      --muted: #2d3748;
+      --muted-foreground: #94a3b8;
+      --accent: #2d3748;
+      --accent-foreground: #f8fafc;
+      --card: #1e293b;
+      --card-foreground: #f8fafc;
+      --border: #334155;
+      --sidebar-bg: #0f172a;
+      --sidebar-fg: #f8fafc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: var(--sidebar-bg);
+      color: var(--sidebar-fg);
+      position: fixed;
+      height: 100vh;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+      padding: 2rem;
+    }
+
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 2px solid var(--sidebar-fg);
+    }
+
+    .profile-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-title {
+      font-size: 0.9rem;
+      color: var(--muted-foreground);
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      color: var(--sidebar-fg);
+      font-size: 1.2rem;
+      transition: color 0.2s ease;
+    }
+
+    .social-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .nav-item {
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      color: var(--sidebar-fg);
+      text-decoration: none;
+      border-radius: 0.25rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-icon {
+      margin-right: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .btn-primary:hover {
+      background-color: #0060df;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--accent);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background-color: var(--card);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
+      overflow: hidden;
+    }
+
+    .project-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .project-description {
+      color: var(--muted-foreground);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      justify-content: center;
+    }
+
+    .tag {
+      background-color: var(--muted);
+      color: var(--muted-foreground);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+    }
+
+    .project-footer {
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: none;
+      border: none;
+      color: var(--sidebar-fg);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1rem;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="profile-container">
+        <img src="images/profile.png" alt="Priyanshu Kumar" class="profile-image">
+        <h2 class="profile-name">Priyanshu Kumar</h2>
+        <p class="profile-title">Full Stack Developer</p>
+        <div class="social-links">
+          <a href="https://github.com/priyanshukr0103" target="_blank" class="social-link">GH</a>
+          <a href="https://www.linkedin.com/in/priyanshu-kumar-44ab3624b/" target="_blank" class="social-link">LI</a>
+          <a href="https://x.com/Priyanshukr__01" target="_blank" class="social-link">TW</a>
+          <a href="mailto:priyanshukr0103@gmail.com" class="social-link">EM</a>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="#home" class="nav-link">
+              <span class="nav-icon">🏠</span>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">
+              <span class="nav-icon">👤</span>
+              <span>About</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#projects" class="nav-link">
+              <span class="nav-icon">💼</span>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">
+              <span class="nav-icon">✉️</span>
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+    </aside>
+
+    <main class="main-content">
+      <section id="home" class="section hero-section">
+        <h1 class="hero-title">Priyanshu Kumar</h1>
+        <p class="hero-subtitle">A passionate Full Stack Developer dedicated to building digital experiences with modern technologies.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <p>A passionate Full Stack Developer dedicated to building digital experiences with modern technologies. I specialize in crafting elegant solutions to complex problems, leveraging both front-end and back-end expertise to create dynamic, responsive web applications.</p>
+        <p>I thrive in fast-paced environments where innovation meets functionality. Based in Chennai, India, my expertise in software development has been driven by a desire to build applications that solve real-world problems.</p>
+      </section>
+
+      <section id="projects" class="section">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image-container">
+              <img src="images/amazer.jpg" alt="Amazer" class="project-image">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Amazer - E-Commerce Platform</h3>
+              <p class="project-description">An Amazon-inspired e-commerce platform with user authentication, product management, shopping cart, and 3D product visualization.</p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">MongoDB</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/tarang07q/Luxify-Amazon-Clone" target="_blank" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image-container">
+              <img src="images/fintrack.jpg" alt="Fintrack+" class="project-image">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Fintrack+ - Finance Management</h3>
+              <p class="project-description">A comprehensive finance management system with expense tracking, budget planning, and financial analytics.</p>
+              <div class="project-tags">
+                <span class="tag">TypeScript</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">Tailwind CSS</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/tarang07q/Apt_Fincare" target="_blank" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image-container">
+              <img src="images/sustainable.jpg" alt="Sustainable Investment Portfolio" class="project-image">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Sustainable Investment Portfolio</h3>
+              <p class="project-description">An ESG-focused investment platform that helps users build sustainable investment portfolios with impact metrics.</p>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">React</span>
+                <span class="tag">Data Analysis</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="https://github.com/tarang07q/Sustainable-Investment-Portfolio" target="_blank" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2 class="section-title">Contact Me</h2>
+        <p>Feel free to reach out to me through any of the following channels:</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li>Email: <a href="mailto:priyanshukr0103@gmail.com">priyanshukr0103@gmail.com</a></li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/in/priyanshu-kumar-44ab3624b/" target="_blank">linkedin.com/in/priyanshu-kumar-44ab3624b</a></li>
+          <li>GitHub: <a href="https://github.com/priyanshukr0103" target="_blank">github.com/priyanshukr0103</a></li>
+          <li>Twitter: <a href="https://x.com/Priyanshukr__01" target="_blank">@Priyanshukr__01</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>

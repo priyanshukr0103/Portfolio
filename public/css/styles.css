@@ -1,0 +1,133 @@
+/* Custom styles for the portfolio */
+
+/* Placeholder image styling */
+.placeholder-image {
+  object-fit: contain !important;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .placeholder-image {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Improve image rendering */
+img {
+  image-rendering: auto;
+}
+
+/* Fix Next.js image rendering */
+span[style*="box-sizing: border-box; display: block; overflow: hidden;"] img {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Theme transition */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Fix for image loading */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fix for Next.js image loading */
+@keyframes imageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+img[loading="eager"], img[loading="lazy"] {
+  animation: imageFadeIn 0.5s ease-in-out;
+}
+
+/* Project card styling */
+.inline-flex.items-center.rounded-full,
+.inline-flex.items-center.rounded-md {
+  transition: all 0.2s ease;
+}
+
+.inline-flex.items-center.rounded-full:hover,
+.inline-flex.items-center.rounded-md:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Project card styling */
+.grid.gap-6 {
+  display: grid;
+  grid-auto-rows: 1fr;
+}
+
+/* Card title styling */
+h3.font-semibold.text-xl {
+  line-height: 1.4;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Card description styling */
+p.text-sm.text-muted-foreground {
+  line-height: 1.6;
+  height: 4.8rem; /* Exactly 3 lines at 1.6 line height */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  -webkit-line-clamp: 3;
+}
+
+/* Card container styling */
+.transition-all.duration-300.hover\:-translate-y-2 {
+  height: 100%;
+  display: flex;
+}
+
+/* Card styling */
+.overflow-hidden.h-full.flex.flex-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Card content styling */
+.p-5.flex-grow {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 1.25rem;
+}
+
+/* Tag container styling */
+.flex.flex-wrap.gap-2.justify-center {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* Card footer styling */
+.p-4.pt-0.flex.justify-center {
+  padding: 1rem;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  border-top-width: 1px;
+}
+
+/* Image container styling */
+.relative.aspect-video {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
