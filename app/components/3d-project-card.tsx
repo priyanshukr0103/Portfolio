@@ -26,9 +26,17 @@ export default function ProjectCard3D({
   tags,
 }: ProjectCardProps) {
   const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const [mounted, setMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Only access theme on the client side after mounting
+  const isDark = mounted ? theme === 'dark' : false;
 
   // Mouse position for 3D effect
   const x = useMotionValue(0);
@@ -125,6 +133,26 @@ export default function ProjectCard3D({
     return cleanup;
   }, [isHovered, isDark]);
 
+  // Return a simplified placeholder during server-side rendering
+  if (!mounted) {
+    return (
+      <div className="relative h-full rounded-xl overflow-hidden group bg-background border border-border shadow-lg">
+        <div className="relative h-48 w-full overflow-hidden bg-muted">
+          {/* Placeholder for image */}
+        </div>
+        <div className="flex flex-col flex-grow p-5">
+          <div className="h-6 w-3/4 bg-muted rounded mb-2"></div>
+          <div className="h-12 w-full bg-muted rounded mb-4"></div>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {tags.map((_, index) => (
+              <div key={index} className="h-5 w-16 bg-muted rounded-full"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       className="relative h-full rounded-xl overflow-hidden group"
@@ -153,6 +181,7 @@ export default function ProjectCard3D({
 
       {/* Card content */}
       <div
+        suppressHydrationWarning
         className={`relative z-10 h-full flex flex-col border ${isDark ? 'border-gray-800 bg-gradient-to-br from-gray-900/90 to-gray-950/90' : 'border-gray-200 bg-gradient-to-br from-white/90 to-gray-100/90'} backdrop-blur-sm rounded-xl overflow-hidden transition-all duration-300 shadow-lg`}
       >
         {/* Image */}
@@ -169,7 +198,7 @@ export default function ProjectCard3D({
             fill
             className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
           />
-          <div className={`absolute inset-0 bg-gradient-to-t ${isDark ? 'from-gray-900 to-transparent opacity-60' : 'from-gray-500 to-transparent opacity-30'}`} />
+          <div suppressHydrationWarning className={`absolute inset-0 bg-gradient-to-t ${isDark ? 'from-gray-900 to-transparent opacity-60' : 'from-gray-500 to-transparent opacity-30'}`} />
         </div>
 
         {/* Content */}
@@ -180,14 +209,15 @@ export default function ProjectCard3D({
             transition: "transform 0.3s ease-out",
           }}
         >
-          <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
-          <p className={`${isDark ? 'text-muted-foreground' : 'text-gray-700'} text-sm mb-4 flex-grow`}>{description}</p>
+          <h3 suppressHydrationWarning className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{title}</h3>
+          <p suppressHydrationWarning className={`${isDark ? 'text-muted-foreground' : 'text-gray-700'} text-sm mb-4 flex-grow`}>{description}</p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-4">
             {tags.map((tag, index) => (
               <span
                 key={index}
+                suppressHydrationWarning
                 className={`inline-flex items-center rounded-full ${isDark ? 'bg-muted text-muted-foreground' : 'bg-gray-100 text-gray-800'} px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset ${isDark ? 'ring-gray-500/10' : 'ring-gray-300'} hover:bg-muted/80 transition-colors`}
                 style={{
                   transform: isHovered ? "translateZ(40px)" : "translateZ(0px)",
