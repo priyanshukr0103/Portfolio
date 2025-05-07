@@ -141,7 +141,7 @@ export default function Page() {
                 viewport={{ once: true }}
               >
                 <p className="text-lg md:text-xl font-medium leading-relaxed">
-                  I'm a Computer Science and Engineering student with a focus on Information Technology—not someone obsessed with machines, but someone genuinely curious about how things work. I enjoy exploring systems, solving problems, and growing with each challenge I take on.
+                  I'm a Computer Science and Engineering student with a focus on Information Technology - not someone obsessed with machines, but someone genuinely curious about how things work. I enjoy exploring systems, solving problems, and growing with each challenge I take on.
                 </p>
 
                 <motion.p
@@ -155,7 +155,7 @@ export default function Page() {
                 </motion.p>
 
                 <p className="text-lg md:text-xl font-medium leading-relaxed">
-                  Music has always been my escape. I don't just listen—I sing. And when emotions align with the rhythm, I write—poems, shayari, and thoughts that speak louder than words ever could.
+                  Music has always been my escape. I don't just listen - I sing. And when emotions align with the rhythm, I write - poems, shayari, and thoughts that speak louder than words ever could.
                 </p>
 
                 <motion.p
@@ -169,7 +169,7 @@ export default function Page() {
                 </motion.p>
 
                 <p className="text-lg md:text-xl font-medium leading-relaxed">
-                  Soon, I hope to pursue an MBA—not to change direction, but to expand it. To understand the bigger picture and bring value where creativity and logic meet.
+                  Soon, I hope to pursue an MBA - not to change direction, but to expand it. To understand the bigger picture and bring value where creativity and logic meet.
                 </p>
 
                 <div className="pt-6 flex justify-center md:justify-start">
@@ -309,7 +309,7 @@ export default function Page() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
               <ProjectCard
                 title="Spam Mail Detection"
-                description="This project builds a Spam Mail Detection system using NLP and Machine Learning. It classifies emails as spam or ham (not spam) using the Multinomial Naïve Bayes (MNB) algorithm."
+                description="This project builds a Spam Mail Detection system using NLP and Machine Learning. It classifies emails as spam or ham using the MNB algorithm."
                 image="/images/spam.jpg"
                 link="https://github.com/priyanshukr0103/Spam-Mail-Detection"
                 tags={["Python ", "Pandas & NumPy", "Matplotlib & Seaborn"]}
